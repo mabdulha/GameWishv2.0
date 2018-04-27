@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GameWishV2</string>
+    <array name="genres">
+        <item>Choose Genre</item>
+        <item>Action</item>
+        <item>Action-Adventure</item>
+        <item>Educational</item>
+        <item>Fighting</item>
+        <item>FPS</item>
+        <item>Multi-player</item>
+        <item>Open World</item>
+        <item>Platform</item>
+        <item>Puzzle</item>
+        <item>Racing</item>
+        <item>RPG</item>
+        <item>Shooter</item>
+        <item>Simulation</item>
+        <item>Sport</item>
+        <item>Strategy</item>
+        <item>Stealth</item>
+        <item>Survival</item>
+        <item>Traditional</item>
+        <item>Other</item>
+    </array>
+</resources>
