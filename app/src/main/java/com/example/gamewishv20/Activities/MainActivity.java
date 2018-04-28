@@ -34,14 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
-
-
     private DatabaseReference mDatabaseRef;
-    //private DatabaseReference mDatabaseRefWish;
-
     private boolean mProcessWish = false;
-
-    private List<Game> mGames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("games");
-       // mDatabaseRefWish = FirebaseDatabase.getInstance().getReference("wish_list");
-
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecycleView);
         mRecyclerView.setHasFixedSize(true);
@@ -95,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
-
 
                 viewHolder.wishButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -190,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
                     .into(insert_image);
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
