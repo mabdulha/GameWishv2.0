@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".Activities.AddGame" />
         <activity android:name=".Activities.GameView" />
-        <activity android:name=".Activities.Wishs" />
         <activity android:name=".Activities.Search" />
         <activity android:name=".Activities.Update"></activity>
     </application>

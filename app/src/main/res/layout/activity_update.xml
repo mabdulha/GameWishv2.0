@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Update">
+    android:padding="12dp"
+    tools:context="com.example.gamewishv20.Activities.Update">
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/img_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/update_image_view"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="34dp"
+        android:layout_toEndOf="@+id/update_image_view"
+        android:text="Choose Image" />
+
+    <EditText
+        android:id="@+id/update_game_name"
+        android:drawableStart="@drawable/ic_game_name"
+        android:drawablePadding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Game Name" />
+
+    <Spinner
+        android:id="@+id/update_spinner_genres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/update_game_name"
+        android:layout_marginTop="78dp"
+        android:entries="@array/genres" />
+
+    <RatingBar
+        android:id="@+id/update_bar_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/update_rating"
+        android:layout_centerHorizontal="true"
+        android:numStars="5"
+        android:stepSize="1" />
+
+    <Button
+        android:id="@+id/btn_update_db"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="Update Data" />
+
+    <ImageView
+        android:id="@+id/update_image_view"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/update_progress_bar"
+        android:layout_alignStart="@+id/update_rating"
+        android:layout_marginBottom="15dp" />
+
+    <EditText
+        android:id="@+id/update_game_summary"
+        android:drawableStart="@drawable/ic_game_summary"
+        android:drawablePadding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/update_game_name"
+        android:hint="Summary" />
+
+    <ProgressBar
+        android:id="@+id/update_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_update_db"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
+
+    <TextView
+        android:id="@+id/update_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/update_spinner_genres"
+        android:layout_marginTop="16dp"
+        android:layout_toStartOf="@+id/update_bar_rating"
+        android:text="Rating"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+</RelativeLayout>

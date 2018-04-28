@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 mDatabaseRef) {
 
             @Override
-            protected void populateViewHolder(GamesViewHolder viewHolder, Game model, int position)  {
+            protected void populateViewHolder(GamesViewHolder viewHolder, Game model, final int position)  {
 
                 final String ref_key = getRef(position).getKey();
 
@@ -88,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-                        Toast.makeText(MainActivity.this, "Long pressed", Toast.LENGTH_SHORT).show();
+                        Intent update_intent = new Intent(MainActivity.this, Update.class);
+                        update_intent.putExtra("gamev_id", ref_key);
+                        startActivity(update_intent);
+                       // Toast.makeText(MainActivity.this, "Key" + ref_key, Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -208,12 +211,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(MainActivity.this, AddGame.class);
                 startActivity(intent1);
                 break;
-
-            case R.id.menuWish:
-                Intent intent2 = new Intent(MainActivity.this, Wishs.class);
-                startActivity(intent2);
-                break;
-
         }
 
         return super.onOptionsItemSelected(item);
