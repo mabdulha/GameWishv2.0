@@ -41,7 +41,7 @@
         android:layout_below="@+id/textRating"
         android:layout_centerHorizontal="true"
         android:numStars="5"
-        android:stepSize=".5" />
+        android:stepSize="1" />
 
     <Button
         android:id="@+id/btn_add_db"

@@ -29,7 +29,6 @@ public class GameView extends AppCompatActivity {
 
     double rating;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +54,21 @@ public class GameView extends AppCompatActivity {
                 String insert_summary = (String) dataSnapshot.child("summary").getValue();
                 String insert_image = (String) dataSnapshot.child("imageUrl").getValue();
 
-                String s = String.valueOf(rating);
+               long insert_rating = (long) dataSnapshot.child("rating").getValue();
 
-                float f = Float.valueOf(s);
+                //float f = Float.parseFloat(Double.toString(rating));
 
+                //String s = String.valueOf(rating);
+
+               // float fl = Float.valueOf(f);
 
                 mRatingBar = (RatingBar) findViewById(R.id.star_rating);
 
 
+
                 game_genre.setText(insert_genre);
                 game_summary.setText(insert_summary);
-                mRatingBar.setRating(f);
+                mRatingBar.setRating(insert_rating);
                 Picasso.with(GameView.this).load(insert_image)
                         .fit()
                         .centerCrop()

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 mDatabaseRef) {
 
             @Override
-            protected void populateViewHolder(GamesViewHolder viewHolder, Game model, int position) {
+            protected void populateViewHolder(GamesViewHolder viewHolder, Game model, int position)  {
 
                 final String ref_key = getRef(position).getKey();
 
@@ -82,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent game_intent = new Intent(MainActivity.this, GameView.class);
                         game_intent.putExtra("gamev_id", ref_key);
                         startActivity(game_intent);
+                    }
+                });
+
+                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Toast.makeText(MainActivity.this, "Long pressed", Toast.LENGTH_SHORT).show();
+                        return true;
                     }
                 });
 
