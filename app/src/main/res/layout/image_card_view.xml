@@ -30,7 +30,7 @@
                 android:id="@+id/textViewName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="9"
+                android:layout_weight="8"
                 android:text="Name"
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
@@ -38,11 +38,19 @@
 
             <ImageButton
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:id="@+id/wish_icon"
-                android:src="@drawable/ic_empty_fav"
+                android:id="@+id/update_icon"
+                android:src="@drawable/ic_update"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:tint="@android:color/white"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:id="@+id/delete_icon"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_delete"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>

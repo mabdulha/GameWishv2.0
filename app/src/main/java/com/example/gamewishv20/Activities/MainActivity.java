@@ -1,8 +1,9 @@
 package com.example.gamewishv20.Activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Rating;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,21 +20,15 @@ import com.example.gamewishv20.Models.Game;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import com.example.gamewishv20.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
     private DatabaseReference mDatabaseRef;
-    private boolean mProcessWish = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setName(model.getName());
                 viewHolder.setImage(getApplicationContext(), model.getImageUrl());
 
-                viewHolder.setWishButton(ref_key);
-
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -77,45 +68,38 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                viewHolder.updateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public boolean onLongClick(View view) {
+                    public void onClick(View view) {
                         Intent update_intent = new Intent(MainActivity.this, Update.class);
                         update_intent.putExtra("gamev_id", ref_key);
                         startActivity(update_intent);
-                       // Toast.makeText(MainActivity.this, "Key" + ref_key, Toast.LENGTH_SHORT).show();
-                        return true;
                     }
                 });
 
-                viewHolder.wishButton.setOnClickListener(new View.OnClickListener() {
+                viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mProcessWish = true;
+                        AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Deletion Confirmation")
+                                .setMessage("Are you sure you want to delete this game?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mDatabaseRef.child(ref_key).removeValue();
+                                        Toast.makeText(MainActivity.this, "Game Deleted", Toast.LENGTH_SHORT).show();
 
-
-                            mDatabaseRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (mProcessWish) {
-
-                                    if (dataSnapshot.child(ref_key).hasChild("user")) {
-
-                                        mDatabaseRef.child(ref_key).child("user").removeValue();
-                                        mProcessWish = false;
-                                    } else {
-                                        mDatabaseRef.child(ref_key).child("user").setValue("wished");
-                                        mProcessWish = false;
-
-                                        }
                                     }
-                                }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .show();
 
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
 
-                                }
-                            });
 
                     }
                 });
@@ -130,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         View mView;
 
-        ImageButton wishButton;
+        ImageButton updateButton, deleteButton;
 
         DatabaseReference mDatabaseRef;
 
@@ -138,32 +122,11 @@ public class MainActivity extends AppCompatActivity {
             super(itemView);
             mView= itemView;
 
-            wishButton = (ImageButton) mView.findViewById(R.id.wish_icon);
+            updateButton = (ImageButton) mView.findViewById(R.id.update_icon);
+            deleteButton = (ImageButton) mView.findViewById(R.id.delete_icon);
 
             mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("games");
 
-        }
-
-
-
-        public void setWishButton(final String ref_key) {
-            mDatabaseRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.child(ref_key).hasChild("user")) {
-
-                        wishButton.setImageResource(R.drawable.ic_favorite_black_24dp);
-                    }
-                    else {
-                        wishButton.setImageResource(R.drawable.ic_empty_fav);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
         }
 
         public void setName(String name) {
