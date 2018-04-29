@@ -151,7 +151,6 @@ public class Update extends AppCompatActivity {
     }
 
     private void updateGame() {
-         Toast.makeText(Update.this, "Updating", Toast.LENGTH_SHORT).show();
         if (imageUri != null || updateName.length() != 0 || updateSummary.length() != 0) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                    + "." + getFileExtension(imageUri));
