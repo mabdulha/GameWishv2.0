@@ -71,6 +71,7 @@ public class Search extends AppCompatActivity {
                 final String ref_key = getRef(position).getKey();
 
                 viewHolder.setDetails(getApplicationContext(), model.getName(), model.getImageUrl());
+                Toast.makeText(Search.this, "Search Results", Toast.LENGTH_SHORT).show();
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override

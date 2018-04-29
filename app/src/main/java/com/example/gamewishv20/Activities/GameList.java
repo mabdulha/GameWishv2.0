@@ -91,6 +91,7 @@ public class GameList extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         mDatabaseRef.child(ref_key).removeValue();
+
                                         Toast.makeText(GameList.this, "Game Deleted", Toast.LENGTH_SHORT).show();
 
                                     }

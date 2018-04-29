@@ -81,7 +81,6 @@ public class Update extends AppCompatActivity {
                 String insert_genre = (String) dataSnapshot.child("genre").getValue();
                 String insert_summary = (String) dataSnapshot.child("summary").getValue();
                 String insert_image = (String) dataSnapshot.child("imageUrl").getValue();
-                //long insert_rating = (long) dataSnapshot.child("rating").getValue();
 
                 updateName.setText(insert_name);
 
@@ -161,7 +160,7 @@ public class Update extends AppCompatActivity {
     }
 
     private void updateGame() {
-        if (imageUri != null || updateName.length() != 0 || updateSummary.length() != 0) {
+        if (imageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                    + "." + getFileExtension(imageUri));
 
