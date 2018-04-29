@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class GameList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -65,6 +67,7 @@ public class GameList extends AppCompatActivity {
                         Intent game_intent = new Intent(GameList.this, GameView.class);
                         game_intent.putExtra("gamev_id", ref_key);
                         startActivity(game_intent);
+                        CustomIntent.customType(GameList.this, "fadein-to-fadeout");
                     }
                 });
 
@@ -74,6 +77,7 @@ public class GameList extends AppCompatActivity {
                         Intent update_intent = new Intent(GameList.this, Update.class);
                         update_intent.putExtra("gamev_id", ref_key);
                         startActivity(update_intent);
+                        CustomIntent.customType(GameList.this, "left-to-right");
                     }
                 });
 
@@ -154,11 +158,13 @@ public class GameList extends AppCompatActivity {
             case R.id.menuSearch:
                 Intent intent = new Intent(GameList.this, Search.class);
                 startActivity(intent);
+                CustomIntent.customType(GameList.this, "bottom-to-up");
                 break;
 
             case R.id.action_add:
                 Intent intent1 = new Intent(GameList.this, AddGame.class);
                 startActivity(intent1);
+                CustomIntent.customType(GameList.this, "up-to-bottom");
                 break;
         }
 
