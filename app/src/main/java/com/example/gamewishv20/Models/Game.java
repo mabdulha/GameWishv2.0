@@ -1,7 +1,7 @@
 package com.example.gamewishv20.Models;
 
 /**
- * Created by moham on 22/04/2018.
+ * Created by Mozeeb on 22/04/2018.
  */
 
 public class Game {

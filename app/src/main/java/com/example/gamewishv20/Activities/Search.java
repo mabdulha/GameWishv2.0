@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gamewishv20.Models.Game;
 import com.example.gamewishv20.R;
@@ -68,7 +69,6 @@ public class Search extends AppCompatActivity {
             protected void populateViewHolder(GamesViewHolder viewHolder, Game model, int position) {
 
                 final String ref_key = getRef(position).getKey();
-
 
                 viewHolder.setDetails(getApplicationContext(), model.getName(), model.getImageUrl());
 

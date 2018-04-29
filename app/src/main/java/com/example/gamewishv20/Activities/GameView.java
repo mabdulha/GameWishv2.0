@@ -1,13 +1,11 @@
 package com.example.gamewishv20.Activities;
 
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.gamewishv20.R;
 import com.google.firebase.database.DataSnapshot;
@@ -26,8 +24,6 @@ public class GameView extends AppCompatActivity {
     private ImageView game_image;
     private TextView game_genre, game_summary;
     private RatingBar mRatingBar;
-
-    double rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +45,34 @@ public class GameView extends AppCompatActivity {
          mDatabaseRef.child(mRef_key).addValueEventListener(new ValueEventListener() {
 
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(final DataSnapshot dataSnapshot) {
 
                 String insert_genre = (String) dataSnapshot.child("genre").getValue();
                 String insert_summary = (String) dataSnapshot.child("summary").getValue();
                 String insert_image = (String) dataSnapshot.child("imageUrl").getValue();
 
-               long insert_rating = (long) dataSnapshot.child("rating").getValue();
-
-                //float f = Float.parseFloat(Double.toString(rating));
-
-                //String s = String.valueOf(rating);
-
-               // float fl = Float.valueOf(f);
-
                 mRatingBar = (RatingBar) findViewById(R.id.star_rating);
-
-
 
                 game_genre.setText(insert_genre);
                 game_summary.setText(insert_summary);
-                mRatingBar.setRating(insert_rating);
+
+                //This code was found on StackOverFlow and can be found at:
+                // https://stackoverflow.com/questions/46645568/how-to-display-rating-in-ratingbar-from-firebase
+                mDatabaseRef.child(mRef_key).child("rating").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            float rating = Float.parseFloat(dataSnapshot.getValue().toString());
+                            mRatingBar.setRating(rating);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 Picasso.with(GameView.this).load(insert_image)
                         .fit()
                         .centerCrop()

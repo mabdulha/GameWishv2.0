@@ -81,7 +81,7 @@ public class Update extends AppCompatActivity {
                 String insert_genre = (String) dataSnapshot.child("genre").getValue();
                 String insert_summary = (String) dataSnapshot.child("summary").getValue();
                 String insert_image = (String) dataSnapshot.child("imageUrl").getValue();
-                long insert_rating = (long) dataSnapshot.child("rating").getValue();
+                //long insert_rating = (long) dataSnapshot.child("rating").getValue();
 
                 updateName.setText(insert_name);
 
@@ -90,7 +90,21 @@ public class Update extends AppCompatActivity {
                 //It is the second one under the verified comment
                 updateSpinGenre.setSelection(((ArrayAdapter)updateSpinGenre.getAdapter()).getPosition(insert_genre));
                 updateSummary.setText(insert_summary);
-                updateRatingBar.setRating(insert_rating);
+
+                mDatabaseRef.child(mRef_key).child("rating").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            float rating = Float.parseFloat(dataSnapshot.getValue().toString());
+                            updateRatingBar.setRating(rating);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 Picasso.with(Update.this).load(insert_image)
                         .fit()
                         .centerCrop()
