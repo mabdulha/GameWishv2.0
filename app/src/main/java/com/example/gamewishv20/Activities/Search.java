@@ -1,6 +1,7 @@
 package com.example.gamewishv20.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,7 +67,20 @@ public class Search extends AppCompatActivity {
             @Override
             protected void populateViewHolder(GamesViewHolder viewHolder, Game model, int position) {
 
+                final String ref_key = getRef(position).getKey();
+
+
                 viewHolder.setDetails(getApplicationContext(), model.getName(), model.getImageUrl());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent game_intent = new Intent(Search.this, GameView.class);
+                        game_intent.putExtra("gamev_id", ref_key);
+                        startActivity(game_intent);
+                    }
+                });
+
             }
         };
 

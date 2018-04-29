@@ -34,9 +34,6 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Update extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -174,7 +171,7 @@ public class Update extends AppCompatActivity {
                                     taskSnapshot.getDownloadUrl().toString());
                             mDatabaseRef.child(mRef_key).setValue(game);
 
-                            startActivity(new Intent(Update.this, MainActivity.class));
+                            startActivity(new Intent(Update.this, GameList.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

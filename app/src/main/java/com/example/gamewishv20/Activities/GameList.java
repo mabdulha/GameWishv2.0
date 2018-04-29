@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity {
+public class GameList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent game_intent = new Intent(MainActivity.this, GameView.class);
+                        Intent game_intent = new Intent(GameList.this, GameView.class);
                         game_intent.putExtra("gamev_id", ref_key);
                         startActivity(game_intent);
                     }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.updateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent update_intent = new Intent(MainActivity.this, Update.class);
+                        Intent update_intent = new Intent(GameList.this, Update.class);
                         update_intent.putExtra("gamev_id", ref_key);
                         startActivity(update_intent);
                     }
@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        AlertDialog dialog = new AlertDialog.Builder(GameList.this)
                                 .setTitle("Deletion Confirmation")
                                 .setMessage("Are you sure you want to delete this game?")
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         mDatabaseRef.child(ref_key).removeValue();
-                                        Toast.makeText(MainActivity.this, "Game Deleted", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(GameList.this, "Game Deleted", Toast.LENGTH_SHORT).show();
 
                                     }
                                 })
@@ -152,12 +152,12 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menuSearch:
-                Intent intent = new Intent(MainActivity.this, Search.class);
+                Intent intent = new Intent(GameList.this, Search.class);
                 startActivity(intent);
                 break;
 
             case R.id.action_add:
-                Intent intent1 = new Intent(MainActivity.this, AddGame.class);
+                Intent intent1 = new Intent(GameList.this, AddGame.class);
                 startActivity(intent1);
                 break;
         }

@@ -137,7 +137,7 @@ public class AddGame extends AppCompatActivity {
                             String gameId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(gameId).setValue(game);
 
-                            startActivity(new Intent(AddGame.this, MainActivity.class));
+                            startActivity(new Intent(AddGame.this, GameList.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

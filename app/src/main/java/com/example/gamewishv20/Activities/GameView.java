@@ -46,7 +46,8 @@ public class GameView extends AppCompatActivity {
 
          mRatingBar = (RatingBar) findViewById(R.id.star_rating);
 
-        mDatabaseRef.child(mRef_key).addValueEventListener(new ValueEventListener() {
+         mDatabaseRef.child(mRef_key).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

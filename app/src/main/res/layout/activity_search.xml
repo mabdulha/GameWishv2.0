@@ -7,11 +7,12 @@
     tools:context=".Activities.Search">
 
     <TextView
-    android:id="@+id/search_title"
+        android:id="@+id/search_title"
         android:layout_height="wrap_content"
+        android:paddingStart="20dp"
         android:layout_width="match_parent"
-        android:text="FireBase Search"
-        android:layout_marginTop="10dp"
+        android:text="Games Search"
+        android:layout_marginTop="15dp"
         android:paddingBottom="20dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
     />
@@ -22,8 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="73dp"
-        android:hint="Name of game" />
+        android:layout_marginTop="60dp"
+        android:hint="Name of game"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
 
     <Button
         android:id="@+id/search_btn"
@@ -31,15 +35,19 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:layout_below="@+id/search_edit"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:background="@color/Anakiwa"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="364dp"
+        android:layout_below="@id/search_btn"
+        android:layout_marginTop="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="51dp"
-        android:orientation="vertical"></android.support.v7.widget.RecyclerView>
+        android:orientation="vertical" />
 
 </RelativeLayout>
