@@ -70,7 +70,7 @@
         android:drawableStart="@drawable/ic_game_summary"
         android:drawablePadding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edit_game_name"
         android:hint="Summary" />
