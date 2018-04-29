@@ -10,13 +10,15 @@
 
     <Button
         android:id="@+id/img_upload_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/image_view"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="34dp"
-        android:layout_toEndOf="@+id/image_view"
-        android:text="Choose Image" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="206dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/colorPrimary"
+        android:text="Choose Image"
+        android:textColor="@android:color/white" />
 
     <EditText
         android:id="@+id/edit_game_name"
@@ -45,20 +47,22 @@
 
     <Button
         android:id="@+id/btn_add_db"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:text="Add To Database" />
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/progress_bar"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/textRating"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="151dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <EditText

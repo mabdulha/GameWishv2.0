@@ -67,7 +67,6 @@ public class Update extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference().child("games");
 
         mRef_key = getIntent().getExtras().getString("gamev_id");
-        Toast.makeText(Update.this, "Key " + mRef_key, Toast.LENGTH_SHORT).show();
 
         chooseBtn = (Button) findViewById(R.id.img_update_btn);
         updateBtn = (Button) findViewById(R.id.btn_update_db);
